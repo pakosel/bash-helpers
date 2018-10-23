@@ -2,4 +2,9 @@
 #traverse directory recursively and find all JPG files
 #Rename them according to EXIF data
 
-find . -iname "*.jpg" | xargs exiv2 rename -F
+if [ "$#" -ne 1 ]; then
+    echo "File mask not provided as the first argument!"
+    exit 1
+fi
+
+find . -iname "$1" | xargs exiv2 rename -F
